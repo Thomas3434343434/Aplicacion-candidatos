@@ -85,7 +85,8 @@ h1, h2, h3, h4, strong { font-family: 'Bricolage Grotesque', sans-serif; }
 .logo strong { color: var(--verde-1); }
 
 /* Nav */
-#main-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem; }
+#main-nav { display: none; align-items: center; flex-wrap: wrap; gap: 0.3rem; }
+body.is-authed #main-nav { display: flex; }
 
 .tab-button, .nav-link {
     background: transparent;
@@ -375,9 +376,12 @@ footer p { font-size: 0.8rem; }
         gap: 0.6rem;
         box-shadow: 0 12px 30px var(--sombra);
         backdrop-filter: blur(10px);
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
     }
-    #main-nav.open { display: flex; }
-    .hamburger { display: flex; }
+    body.is-authed #main-nav.open { display: flex; }
+    .hamburger { display: none; }
+    body.is-authed .hamburger { display: flex; }
     
     .tab-button, .nav-link, .logout-btn {
         padding: 0.8rem 1.2rem; /* Zona interactiva optimizada para dedos */

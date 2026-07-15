@@ -78,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Menú Hamburguesa Móvil */
     const hamburgerBtn = document.getElementById("hamburger");
     if (hamburgerBtn && mainNav) {
-        hamburgerBtn.style.display = "flex";
         hamburgerBtn.addEventListener("click", (e) => {
             e.stopPropagation();
             mainNav.classList.toggle("open");
@@ -188,12 +187,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* --- Control del Estado de Autenticación --- */
 onAuthStateChanged(auth, async (user) => {
-    const hamburgerBtn = document.getElementById("hamburger");
     if (user) {
-        if (mainNav) mainNav.style.display = "flex";
+        document.body.classList.add("is-authed");
         if (appContent) appContent.style.display = "block";
         if (authSection) authSection.style.display = "none";
-        if (hamburgerBtn) hamburgerBtn.style.display = "flex";
         showPage("inicio");
 
         subscribeNoticias();
@@ -205,13 +202,13 @@ onAuthStateChanged(auth, async (user) => {
         const rachaBtn = document.getElementById("racha-nav-btn");
         if (rachaBtn) rachaBtn.style.display = "";
     } else {
-        if (mainNav) mainNav.style.display = "none";
+        document.body.classList.remove("is-authed");
+        if (mainNav) mainNav.classList.remove("open");
         if (appContent) appContent.style.display = "none";
         if (authSection) {
             authSection.style.display = "block";
             authSection.classList.add("active");
         }
-        if (hamburgerBtn) hamburgerBtn.style.display = "none";
         if (authMessage) authMessage.textContent = "";
     }
 });
